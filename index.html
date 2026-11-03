@@ -1,0 +1,579 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Familieweekend 2027 — besluitkader comité</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,700&family=Source+Sans+3:wght@400;600;700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --ink: #1c241c;
+      --muted: #4a5548;
+      --line: #c9d2c4;
+      --bg: #f3f6f1;
+      --paper: #ffffff;
+      --accent: #2f5d3a;
+      --accent-soft: #e4efe6;
+      --warn: #8a4b12;
+      --warn-bg: #f8efe4;
+      --ok: #1f5c45;
+      --danger: #7a2e2e;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      color: var(--ink);
+      background:
+        radial-gradient(1200px 500px at 10% -10%, #dce8dc 0%, transparent 55%),
+        linear-gradient(180deg, #eef3eb 0%, var(--bg) 30%, #e8eee6 100%);
+      font-family: "Source Sans 3", system-ui, sans-serif;
+      line-height: 1.45;
+    }
+    .wrap { max-width: 920px; margin: 0 auto; padding: 2rem 1.25rem 4rem; }
+    header {
+      padding: 1.5rem 0 1.25rem;
+      border-bottom: 1px solid var(--line);
+      margin-bottom: 1.5rem;
+    }
+    header p.kicker {
+      margin: 0 0 0.35rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      font-size: 0.78rem;
+      font-weight: 700;
+      color: var(--accent);
+    }
+    h1 {
+      font-family: Fraunces, Georgia, serif;
+      font-weight: 700;
+      font-size: clamp(1.7rem, 3vw, 2.25rem);
+      line-height: 1.15;
+      margin: 0 0 0.5rem;
+    }
+    .lede { margin: 0; color: var(--muted); max-width: 62ch; }
+    .deadline {
+      margin-top: 1rem;
+      padding: 0.85rem 1rem;
+      background: var(--warn-bg);
+      border-left: 4px solid var(--warn);
+      color: #5c3510;
+      font-weight: 600;
+    }
+    nav.toc {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin: 1.25rem 0 0;
+    }
+    nav.toc a {
+      text-decoration: none;
+      color: var(--accent);
+      background: var(--accent-soft);
+      padding: 0.35rem 0.7rem;
+      font-size: 0.9rem;
+      font-weight: 600;
+    }
+    section {
+      background: var(--paper);
+      border: 1px solid var(--line);
+      padding: 1.25rem 1.2rem 1.4rem;
+      margin: 1rem 0;
+    }
+    h2 {
+      font-family: Fraunces, Georgia, serif;
+      font-size: 1.35rem;
+      margin: 0 0 0.75rem;
+      color: var(--accent);
+    }
+    h3 {
+      font-size: 1.02rem;
+      margin: 1.1rem 0 0.45rem;
+    }
+    p, li { color: var(--ink); }
+    .muted { color: var(--muted); }
+    .grid-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.75rem;
+    }
+    @media (max-width: 700px) { .grid-2 { grid-template-columns: 1fr; } }
+    .stat {
+      background: var(--accent-soft);
+      padding: 0.8rem 0.9rem;
+    }
+    .stat strong {
+      display: block;
+      font-size: 1.25rem;
+      font-family: Fraunces, Georgia, serif;
+    }
+    .stat span { font-size: 0.88rem; color: var(--muted); }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.95rem;
+      margin: 0.6rem 0 0.2rem;
+    }
+    th, td {
+      border-bottom: 1px solid var(--line);
+      padding: 0.45rem 0.4rem;
+      text-align: left;
+      vertical-align: top;
+    }
+    th { font-size: 0.82rem; text-transform: uppercase; letter-spacing: 0.04em; color: var(--muted); }
+    td.num, th.num { text-align: right; font-variant-numeric: tabular-nums; }
+    tr.hl td { background: #f7fbf7; font-weight: 600; }
+    .tag {
+      display: inline-block;
+      font-size: 0.75rem;
+      font-weight: 700;
+      padding: 0.15rem 0.45rem;
+      margin-right: 0.25rem;
+    }
+    .tag-ok { background: #d9efe4; color: var(--ok); }
+    .tag-warn { background: var(--warn-bg); color: var(--warn); }
+    .tag-risk { background: #f3e0e0; color: var(--danger); }
+    .tag-open { background: #e8e8f2; color: #3d3d6b; }
+    ul.compact { margin: 0.4rem 0; padding-left: 1.15rem; }
+    ul.compact li { margin: 0.25rem 0; }
+    .callout {
+      margin-top: 0.8rem;
+      padding: 0.75rem 0.9rem;
+      background: #f7f8f5;
+      border: 1px dashed var(--line);
+    }
+    footer {
+      margin-top: 1.5rem;
+      color: var(--muted);
+      font-size: 0.85rem;
+    }
+    .controls {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem 1.25rem;
+      align-items: end;
+      margin: 0.75rem 0 0.25rem;
+      padding: 0.75rem;
+      background: var(--accent-soft);
+    }
+    label { font-size: 0.88rem; font-weight: 600; display: grid; gap: 0.25rem; }
+    select, input[type="number"] {
+      font: inherit;
+      padding: 0.35rem 0.5rem;
+      border: 1px solid var(--line);
+      background: #fff;
+      min-width: 7rem;
+    }
+    .live-result {
+      margin-top: 0.75rem;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 0.5rem;
+    }
+    @media (max-width: 700px) { .live-result { grid-template-columns: 1fr; } }
+    .live-result div {
+      background: #fff;
+      border: 1px solid var(--line);
+      padding: 0.7rem 0.8rem;
+    }
+    .live-result strong {
+      display: block;
+      font-family: Fraunces, Georgia, serif;
+      font-size: 1.35rem;
+    }
+    @media print {
+      body { background: #fff; }
+      .wrap { padding: 0; }
+      section { break-inside: avoid; }
+      nav.toc, .controls { display: none; }
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <p class="kicker">Van Doornik · organiserend comité</p>
+      <h1>Familieweekend 2027 — besluitkader</h1>
+      <p class="lede">
+        Kort overzicht zodat het comité keuzes kan maken zonder tunnelvisie:
+        Bosbeek-feiten, kosten met/zonder pot, peiling zonder druk, en alternatieven met voor/nadeel.
+      </p>
+      <div class="deadline">
+        Harde deadline richting De Bosbeek: besluit hele huis of X kamers <strong>vóór 1 december 2026</strong>.
+        (Afspraak juni 2026 met aanmeldsecretaris Rinze Vonk.)
+      </div>
+      <nav class="toc" aria-label="Inhoud">
+        <a href="#feiten">Feiten</a>
+        <a href="#sleutel">Verdeelsleutel</a>
+        <a href="#scenarios">Scenario’s &amp; pot</a>
+        <a href="#peiling">Peiling</a>
+        <a href="#beslisruimte">Beslistruimte</a>
+        <a href="#acties">Acties</a>
+      </nav>
+    </header>
+
+    <section id="feiten">
+      <h2>1. Feiten (bevestigd / te verifiëren)</h2>
+      <div class="grid-2">
+        <div class="stat">
+          <strong>4–6 juni 2027</strong>
+          <span>Nivonhuis De Bosbeek, Bennekom · res. 05020609</span>
+        </div>
+        <div class="stat">
+          <strong>€ 5.310</strong>
+          <span>Huur hele huis (betalingsherinnering). Aanbetaling ~€ 2.000 volgens organisatoren — bank/Bosbeek checken.</span>
+        </div>
+        <div class="stat">
+          <strong>2 nachten verplicht</strong>
+          <span>Groepen &gt;30 mogen geen 1-nachtweekend boeken (mail 2 nov 2026).</span>
+        </div>
+        <div class="stat">
+          <strong>~55–60</strong>
+          <span>Mondelinge drempel “hele huis nog zinvol”. WhatsApp-inventarisatie ~40 is voorlopig en onbetrouwbaar.</span>
+        </div>
+      </div>
+
+      <h3>Historie als anker (niet als belofte)</h3>
+      <table>
+        <thead>
+          <tr>
+            <th>Jaar / locatie</th>
+            <th class="num">Totaal kosten</th>
+            <th class="num">Aanwezigheid (orde)</th>
+            <th>Opmerking</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>2024 · Koos Vorrinkhuis</td>
+            <td class="num">€ 6.096</td>
+            <td class="num">~44–50 overnachters</td>
+            <td>Verdeling vooral per nacht (~€66)</td>
+          </tr>
+          <tr>
+            <td>2025 · Seven Hills / Oude Molen</td>
+            <td class="num">€ 6.647</td>
+            <td class="num">hoger persoonsnacht-volume</td>
+            <td>Huur ~€5.693 + eten/drink</td>
+          </tr>
+          <tr class="hl">
+            <td>2026 · Seven Hills</td>
+            <td class="num">€ 6.864</td>
+            <td class="num">58 personen (afrekening)</td>
+            <td>Huur €5.732 + eten/drink; kofferbakverkoop op programma</td>
+          </tr>
+          <tr>
+            <td>2027 · Bosbeek (plan)</td>
+            <td class="num">€ 5.310 + eten</td>
+            <td class="num">onbekend</td>
+            <td>Rekenvoorbeeld totaal <strong>€ 6.000</strong> (huis + eten + klein programma)</td>
+          </tr>
+        </tbody>
+      </table>
+      <p class="muted" style="margin:0.6rem 0 0;font-size:0.9rem;">
+        Contact Bosbeek: Rinze Vonk · ams.bosbeek@nivon.nl · 088 099 0974 ·
+        <a href="https://bosbeek.nivon.nl/">bosbeek.nivon.nl</a>
+      </p>
+    </section>
+
+    <section id="sleutel">
+      <h2>2. Verdeelsleutel (voorstel — eenvoudig)</h2>
+      <p>
+        Geen kinder-uitzondering (jongste generatie eet als volwassene).
+        Doel: eerlijker dan “alles via nachten”, zonder ingewikkelde kortingen.
+      </p>
+      <table>
+        <thead>
+          <tr><th>Deelname</th><th>Bijdrage</th><th>Waarom</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Vrijdag en/of zaterdag meedoen (dag of slapen)</td>
+            <td><strong>1× basisbedrag per persoon</strong></td>
+            <td>Gelijk aandeel in het weekend als geheel</td>
+          </tr>
+          <tr>
+            <td>Alleen zondag (koffie / opruim)</td>
+            <td><strong>gratis</strong></td>
+            <td>Zondag is vooral afronden; belonen i.p.v. belasten</td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="callout">
+        <strong>Wat we bewust niet doen:</strong> druk zetten alsof een vroege “ik kom” al een harde betaalplicht is.
+        Definitieve aantallen en afrekening volgen later; nu gaat het om planning en Bosbeek-keuze.
+      </div>
+    </section>
+
+    <section id="scenarios">
+      <h2>3. Scenario’s: wat doet een familiepot?</h2>
+      <p>
+        Rekenvoorbeeld: <strong>totaal € 6.000</strong> (huur € 5.310 + ~€ 690 eten/klein).
+        Pot = vrijwillige extra bijdrage van wie kan (anoniem mogelijk).
+        Pot verlaagt alleen het bedrag dat over iedereen wordt verdeeld — geen individuele “korting op aanvraag”.
+      </p>
+
+      <h3>Live rekenhulp</h3>
+      <div class="controls">
+        <label>Betalende personen
+          <input id="nPersons" type="number" min="20" max="90" value="55" />
+        </label>
+        <label>Totaalkosten (€)
+          <input id="totalCost" type="number" min="4000" max="9000" step="50" value="6000" />
+        </label>
+        <label>Pot / sponsors (€)
+          <select id="pot">
+            <option value="0">€ 0</option>
+            <option value="1000">€ 1.000</option>
+            <option value="2000" selected>€ 2.000</option>
+          </select>
+        </label>
+      </div>
+      <div class="live-result">
+        <div>
+          <span class="muted">Netto te verdelen</span>
+          <strong id="outNetto">€ 4.000</strong>
+        </div>
+        <div>
+          <span class="muted">Per persoon</span>
+          <strong id="outPp">€ 73</strong>
+        </div>
+        <div>
+          <span class="muted">Gezin van 4</span>
+          <strong id="outGezin">€ 291</strong>
+        </div>
+      </div>
+
+      <h3>Vaste vergelijkingstabel (totaal € 6.000)</h3>
+      <table>
+        <thead>
+          <tr>
+            <th>Betalende personen</th>
+            <th class="num">Pot € 0</th>
+            <th class="num">Pot € 1.000</th>
+            <th class="num">Pot € 2.000</th>
+            <th class="num">Gezin 4 · pot €2k</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>40 <span class="muted">(pessimistisch / vroege WhatsApp)</span></td>
+            <td class="num">€ 150</td>
+            <td class="num">€ 125</td>
+            <td class="num">€ 100</td>
+            <td class="num">€ 400</td>
+          </tr>
+          <tr>
+            <td>50</td>
+            <td class="num">€ 120</td>
+            <td class="num">€ 100</td>
+            <td class="num">€ 80</td>
+            <td class="num">€ 320</td>
+          </tr>
+          <tr class="hl">
+            <td>55–60 <span class="muted">(mondelinge drempel / historie ~58)</span></td>
+            <td class="num">€ 109–100</td>
+            <td class="num">€ 91–83</td>
+            <td class="num">€ 73–67</td>
+            <td class="num">€ 291–267</td>
+          </tr>
+          <tr>
+            <td>65 <span class="muted">(aanvraag Bosbeek)</span></td>
+            <td class="num">€ 92</td>
+            <td class="num">€ 77</td>
+            <td class="num">€ 62</td>
+            <td class="num">€ 246</td>
+          </tr>
+        </tbody>
+      </table>
+      <p class="muted" style="font-size:0.9rem;margin:0.6rem 0 0;">
+        Leesvoorbeeld: bij 55 betalers en € 2.000 pot daalt de prijs van ~€ 109 naar ~€ 73 p.p.
+        Dat is het verschil tussen “best pittig voor een heel gezin” en “beter te slikken”.
+      </p>
+
+      <h3>Pot + acties (passend bij verspreide familie)</h3>
+      <ul class="compact">
+        <li><strong>Stille pot:</strong> QR/rekening vóór het weekend; vrijwillig; geen namen publiceren.</li>
+        <li><strong>Kofferbak / tweedehands:</strong> sluit aan bij wat de familie al leuk vindt; opbrengst → pot (traditie 2026).</li>
+        <li><strong>Digitale veiling / biedlijst:</strong> diensten en ervaringen die ook vanuit Engeland/Frankrijk of Brabant-clusters kunnen (bezoek-tegoed, uitje, digitaal hulpje) — niet alleen “taart bezorgen”.</li>
+      </ul>
+    </section>
+
+    <section id="peiling">
+      <h2>4. Peiling zonder afschrikken</h2>
+      <p>
+        Vroege WhatsApp-telling (~40) is <strong>geen betrouwbare vraagprognose</strong>.
+        Veel mensen weten het nog niet. Als “ik kom” meteen voelt als “dan moet je ook betalen”,
+        melden mensen zich eerder af of zwijgen.
+      </p>
+      <h3>Voorstel werkwijze</h3>
+      <ol>
+        <li><strong>Planningsbasis = historie</strong> (orde 55–60), niet de vroege poll.</li>
+        <li><strong>Vraag omdraaien:</strong> “Wie weet nu al dat die <em>niet</em> komt?” — dat is harde info.</li>
+        <li><strong>Zachte intentie:</strong> “Denk je te komen / twijfel / eerder niet?” — geen contracttaal.</li>
+        <li><strong>Later pas vastzetten:</strong> kamerindeling en afrekening na duidelijkere aantallen; nu alleen Bosbeek-keuze voeden.</li>
+      </ol>
+      <div class="callout">
+        Formulering voor familie (concept):
+        <em>“We plannen op basis van de afgelopen jaren. Geef vooral door als je nu al weet dat je niet komt.
+        Een ‘waarschijnlijk wel’ is geen harde verplichting — definitieve aantallen en kosten volgen later.”</em>
+      </div>
+    </section>
+
+    <section id="beslisruimte">
+      <h2>5. Beslistruimte — niet alleen Bosbeek-tunnel</h2>
+      <p>
+        We staan voorgesorteerd op De Bosbeek, maar het comité mag (en moet) andere routes
+        kort wegen. Doel: later helder aan de familie kunnen uitleggen <em>waarom</em> we
+        O1, O2 of iets anders kozen — niet omdat er geen alternatief was, maar omdat we
+        familie-gevoel, kosten en organisatielast bewust hebben afgewogen.
+      </p>
+
+      <table>
+        <thead>
+          <tr>
+            <th>Optie</th>
+            <th>Familiegevoel</th>
+            <th>Kosten</th>
+            <th>Organisatielast</th>
+            <th>Oordeel (richting)</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>O1 · Hele huis Bosbeek</strong><br><span class="muted">2 nachten, zalen inbegrepen bij volle bezetting</span></td>
+            <td><span class="tag tag-ok">sterk</span> één plek, rustkamers, keuken, buiten</td>
+            <td>Vast €5.310 + eten; p.p. daalt bij meer mensen / pot</td>
+            <td><span class="tag tag-ok">laag–midden</span> pad bekend; deadline 1 dec</td>
+            <td>Default als verwachting ≥ ~55 en prijs met pot acceptabel</td>
+          </tr>
+          <tr>
+            <td><strong>O2 · X kamers + zalen</strong><br><span class="muted">Bosbeek-mail: mag; niet per se goedkoper</span></td>
+            <td><span class="tag tag-warn">midden</span> nog wel “ons huis-gevoel”, kleinere kern</td>
+            <td>Eerst offerte 20/25/30 kamers + zaal(en) nodig</td>
+            <td><span class="tag tag-warn">midden</span> herrekenen + hercommuniceren</td>
+            <td>Serieus als overnachters duidelijk onder drempel blijven</td>
+          </tr>
+          <tr>
+            <td><strong>O3 · Bosbeek afzeggen, andere locatie</strong></td>
+            <td><span class="tag tag-risk">risico</span> zoektocht onder tijdsdruk; kwaliteit onzeker</td>
+            <td>Kan goedkoper of duurder; 2025/26 lagen ~€5,7k huur</td>
+            <td><span class="tag tag-risk">hoog</span> veel comité-uren; weekenden schaars</td>
+            <td>Alleen als O1/O2 onhoudbaar én er is een concreet alternatief</td>
+          </tr>
+          <tr>
+            <td><strong>O4 · Hybride</strong><br><span class="muted">klein overnachten + grote dag op zaterdag elders</span></td>
+            <td><span class="tag tag-warn">split</span> minder “samen het huis”</td>
+            <td>Twee locaties / catering complex</td>
+            <td><span class="tag tag-risk">hoog</span></td>
+            <td>Meestal te zwaar voor de winst; alleen als familie dat expliciet wil</td>
+          </tr>
+          <tr>
+            <td><strong>O5 · Zelfde Bosbeek, zwaarder op pot/acties</strong></td>
+            <td><span class="tag tag-ok">sterk</span> traditie + wederkerigheid (veiling/kofferbak)</td>
+            <td>Pot €1k–€2k maakt p.p. merkbaar lager</td>
+            <td><span class="tag tag-ok">laag</span> extra trekker pot/veiling, geen nieuwe locatie</td>
+            <td>Vaak beter dan van locatie wisselen — eerst dit serieus nemen</td>
+          </tr>
+          <tr>
+            <td><strong>O6 · Weekend inkorten</strong></td>
+            <td>—</td>
+            <td>—</td>
+            <td>—</td>
+            <td><span class="tag tag-risk">afgevallen</span> Bosbeek: groepen &gt;30 alleen 2 nachten</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h3>Hoe het comité ruimte houdt</h3>
+      <ul class="compact">
+        <li>Spreek een <strong>bandbreedte</strong> af, geen enkel punt: bijv. “hele huis oké tussen 50–65 verwachte betalers; daaronder eerst O2-offerte”.</li>
+        <li>Vraag bij Bosbeek <strong>nu</strong> een prijsindicatie kamers+zalen (20/25/30), zodat O2 geen gok is.</li>
+        <li>Besluit O1/O2 op basis van historie + afmeldingen + pot-bereidheid — niet op één WhatsApp-ronde.</li>
+        <li>Documenteer in één zin waarom gekozen is; dat is de familiecommunicatie later.</li>
+      </ul>
+    </section>
+
+    <section id="acties">
+      <h2>6. Acties komende weken</h2>
+      <table>
+        <thead>
+          <tr><th>#</th><th>Actie</th><th>Wie</th><th>Wanneer</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>A1</td>
+            <td>Aanbetaling ~€ 2.000 en openstaand bedrag verifiëren (bank + Bosbeek)</td>
+            <td>Reinder / Floor</td>
+            <td>deze week</td>
+          </tr>
+          <tr>
+            <td>A2</td>
+            <td>Comité: akkoord op sleutel (flat + zondag gratis) en op scenario-denken (geen tunnel)</td>
+            <td>comité</td>
+            <td>korte call</td>
+          </tr>
+          <tr>
+            <td>A3</td>
+            <td>Offerte-vraag Bosbeek: X kamers (20/25/30) + grote zaal (± beukenzaal)</td>
+            <td>Bosbeek-contact</td>
+            <td>zó dat antwoord vóór eind nov binnen is</td>
+          </tr>
+          <tr>
+            <td>A4</td>
+            <td>Familiebericht: prijsbeeld + afmeld-vraag + “geen harde verplichting nu”</td>
+            <td>woordvoerder</td>
+            <td>na A2</td>
+          </tr>
+          <tr>
+            <td>A5</td>
+            <td>Pot-scenario’s (€1k / €2k) laten landen; trekkers stil-geven + kofferbak/veiling aanwijzen</td>
+            <td>comité</td>
+            <td>parallel</td>
+          </tr>
+          <tr>
+            <td>A6</td>
+            <td><strong>Besluit O1 of O2</strong> en mail naar Rinze — hard vóór 1 december</td>
+            <td>comité</td>
+            <td>≤ 30 nov 2026</td>
+          </tr>
+        </tbody>
+      </table>
+      <p class="callout">
+        <span class="tag tag-open">open</span>
+        Pot-doel nog niet gekozen — bewust als scenario’s laten staan tot het comité een voorkeur uitspreekt.
+        Drempel hele huis: start vanuit mondelinge 55–60, herijk na afmeldingen + O2-offerte.
+      </p>
+    </section>
+
+    <footer>
+      Bronnen in repo: Bosbeek-mails (o.a. 2 nov 2026, juni 2026), betalingsnotificatie res. 05020609,
+      verrekeningen 2024–2026, bezoekverslag Bosbeek, welkomstbrief/draaiboek 2026.
+      Pagina voor intern comitégebruik · bijgewerkt 3 november 2026.
+    </footer>
+  </div>
+
+  <script>
+    const euro = (n) =>
+      "€\u00a0" + Math.round(n).toLocaleString("nl-NL");
+
+    function recalc() {
+      const persons = Math.max(1, Number(document.getElementById("nPersons").value) || 1);
+      const total = Math.max(0, Number(document.getElementById("totalCost").value) || 0);
+      const pot = Math.max(0, Number(document.getElementById("pot").value) || 0);
+      const netto = Math.max(0, total - pot);
+      const pp = netto / persons;
+      document.getElementById("outNetto").textContent = euro(netto);
+      document.getElementById("outPp").textContent = euro(pp);
+      document.getElementById("outGezin").textContent = euro(pp * 4);
+    }
+
+    ["nPersons", "totalCost", "pot"].forEach((id) => {
+      document.getElementById(id).addEventListener("input", recalc);
+      document.getElementById(id).addEventListener("change", recalc);
+    });
+    recalc();
+  </script>
+</body>
+</html>
